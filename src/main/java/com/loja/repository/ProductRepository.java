@@ -3,7 +3,6 @@ package com.loja.repository;
 import com.loja.model.Product;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 public class ProductRepository {
 

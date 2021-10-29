@@ -32,6 +32,6 @@ public class Product {
 
     private LocalDate date = LocalDate.now();
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private Category category;
 }
