@@ -1,5 +1,6 @@
 package com.loja;
 
+import com.loja.model.Category;
 import com.loja.model.Product;
 import com.loja.repository.ProductRepository;
 
@@ -13,10 +14,13 @@ public class Program {
     public static void main(String[] args) {
         //System.out.println("Don't worry, be happy \uD83D\uDE0E");
 
-        Product product = new Product();
-        product.setName("Motorola - Moto G5");
-        product.setDescription("So cool!");
-        product.setPrice(new BigDecimal("1599.99"));
+        Product product = new Product(
+                "Motorola - Moto G5",
+                "So cool!",
+                new BigDecimal("1599.99"),
+                Category.PHONE
+            );
+
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("store");
         EntityManager manager = factory.createEntityManager();
