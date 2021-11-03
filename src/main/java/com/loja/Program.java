@@ -9,29 +9,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.io.PrintStream;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
-        //System.out.println("Don't worry, be happy \uD83D\uDE0E");
-        Category category = new Category("PHONE");
-        Product product = new Product(
-                "Motorola - Moto G5",
-                "So cool!",
-                new BigDecimal("1599.99"),
-                category
-            );
+        ProductRepository repository = createProductRepository();
+
+        BigDecimal result = repository.getPrice(1l);
+        System.out.println(result);
+    }
 
 
+    public static ProductRepository createProductRepository() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("store");
         EntityManager manager = factory.createEntityManager();
-        EntityTransaction transaction = manager.getTransaction();
-        transaction.begin();
-        CategoryRepository categoryRepository = new CategoryRepository(manager);
-        ProductRepository repository = new ProductRepository(manager);
-        categoryRepository.create(category);
-        repository.create(product);
-        transaction.commit();
-        manager.close();
+        return new ProductRepository(manager);
     }
 }
